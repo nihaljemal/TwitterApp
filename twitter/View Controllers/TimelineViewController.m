@@ -30,6 +30,9 @@
 
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        
+        UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+        
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.tweets = tweets;

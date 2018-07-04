@@ -13,6 +13,8 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *screenName;
 @property (nonatomic,strong) NSString *url;
+@property (nonatomic,strong) NSString *createdAt;
+@property (nonatomic,strong) NSString *text;
 
 -(instancetype)initWithDictionary: (NSDictionary *)dictionary;
 

@@ -15,8 +15,10 @@
  
     self.TweetLabel.text = tweet.text;
     self.UsernameLabel.text = tweet.user.name;
-    
-    
+    self.ScreenName.text =tweet.user.screenName;
+    self.CreatedAt.text =tweet.createdAtString;
+    self.RetweetCount.text = [NSString stringWithFormat:@"%d", tweet.retweetCount ];
+    self.FavoriteCount.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     
     NSString *fullPicURLString = tweet.user.url;
     NSURL *picURL = [NSURL URLWithString:fullPicURLString];

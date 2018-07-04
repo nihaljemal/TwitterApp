@@ -14,6 +14,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ProfilePic;
 @property (weak, nonatomic) IBOutlet UILabel *UsernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *TweetLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ScreenName;
+@property (weak, nonatomic) IBOutlet UILabel *CreatedAt;
+
+@property (weak, nonatomic) IBOutlet UILabel *RetweetCount;
+@property (weak, nonatomic) IBOutlet UILabel *FavoriteCount;
+
 
 @property (strong, nonatomic) Tweet *tweet;
 
