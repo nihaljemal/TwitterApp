@@ -32,6 +32,8 @@
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc]init];
+        [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+        [self.tableView insertSubview:refreshControl atIndex:0];
         
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
@@ -41,6 +43,22 @@
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
     }];
+}
+
+-(void)beginRefresh:(UIRefreshControl *)refreshControl{
+    
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error){
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            self.tweets = tweets;
+            [self.tableView reloadData];
+            [refreshControl endRefreshing];
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+        
+    }];
+    
 }
 
 

@@ -10,4 +10,6 @@
 
 @interface TimelineViewController : UIViewController
 
+-(void)beginRefresh:(UIRefreshControl*) refreshControl;
+
 @end
