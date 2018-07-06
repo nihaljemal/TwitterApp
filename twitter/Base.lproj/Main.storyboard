@@ -114,10 +114,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="retweet-icon" translatesAutoresizingMaskIntoConstraints="NO" id="phk-M1-PQt">
-                                                    <rect key="frame" x="138" y="125" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hEe-9N-NVr">
                                                     <rect key="frame" x="166" y="130" width="27" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -126,22 +122,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDW-pQ-MMT">
-                                                    <rect key="frame" x="265" y="129" width="24" height="21"/>
+                                                    <rect key="frame" x="265" y="129" width="43" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="favor-icon-red" translatesAutoresizingMaskIntoConstraints="NO" id="h9g-Zc-uDY">
-                                                    <rect key="frame" x="178" y="124" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luV-FI-W2J">
                                                     <rect key="frame" x="222" y="121" width="31" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="favor-icon"/>
+                                                    <state key="selected" image="favor-icon-red"/>
                                                     <connections>
                                                         <action selector="didTypeLike:" destination="OhI-mC-CUS" eventType="touchUpInside" id="fEH-HL-B5g"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tjh-jG-ptO">
+                                                    <rect key="frame" x="132" y="125" width="27" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <state key="selected" image="retweet-icon-green"/>
+                                                    <connections>
+                                                        <action selector="didTypeRetweet:" destination="OhI-mC-CUS" eventType="touchUpInside" id="H7R-pS-Mlr"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -149,7 +151,9 @@
                                         <connections>
                                             <outlet property="CreatedAt" destination="awl-Cj-VRb" id="sPn-ob-uz7"/>
                                             <outlet property="FavoriteCount" destination="cDW-pQ-MMT" id="ABK-gf-5PU"/>
+                                            <outlet property="LikeButton" destination="luV-FI-W2J" id="8BA-CM-UXl"/>
                                             <outlet property="ProfilePic" destination="kXB-B3-EtK" id="em1-dy-hwb"/>
+                                            <outlet property="RetweetButton" destination="tjh-jG-ptO" id="yQ1-nd-B7t"/>
                                             <outlet property="RetweetCount" destination="hEe-9N-NVr" id="z24-NH-gH0"/>
                                             <outlet property="ScreenName" destination="x0f-ij-WVY" id="TuC-dV-1gi"/>
                                             <outlet property="TweetLabel" destination="0nG-s0-k10" id="T58-ar-Cl1"/>
@@ -158,16 +162,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="retweet-icon-green" translatesAutoresizingMaskIntoConstraints="NO" id="7UB-jD-BHl">
-                                <rect key="frame" x="119" y="218" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ugE-Ul-H9I"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home Timeline" id="MOc-fV-EZE">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="cWL-Df-yDP"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="cWL-Df-yDP">
+                            <connections>
+                                <action selector="clickLogout:" destination="Lbl-k5-U4i" id="nzL-cJ-43U"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" image="edit-icon" id="qcN-xF-N8N">
                             <connections>
                                 <segue destination="qgo-CT-5Qz" kind="modal" id="G5n-sy-z2h"/>

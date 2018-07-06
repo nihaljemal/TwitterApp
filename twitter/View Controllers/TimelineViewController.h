@@ -11,5 +11,6 @@
 @interface TimelineViewController : UIViewController
 
 -(void)beginRefresh:(UIRefreshControl*) refreshControl;
+-(void)logoutProcess;
 
 @end

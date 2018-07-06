@@ -10,6 +10,8 @@
 #import "APIManager.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface TimelineViewController () <ComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -97,6 +99,18 @@
 //    [self.tableView reloadData];
 }
 
+-(void)logoutProcess{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
+    [[APIManager shared] logout];
+}
+
+- (IBAction)clickLogout:(id)sender {
+    [self logoutProcess];
+}
 
 #pragma mark - Navigation
 
@@ -109,21 +123,7 @@
     composeController.delegate = self;
     
 }
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  /*
  
  Tweet *tweet = self.tweets[indexPath.row];
