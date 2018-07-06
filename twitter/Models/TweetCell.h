@@ -25,4 +25,6 @@
 
 -(void)configureCell:(Tweet *)tweet;
 
+-(void) refeshData;
+
 @end

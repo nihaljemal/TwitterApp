@@ -26,4 +26,16 @@
     [self.ProfilePic setImageWithURL:picURL];
 }
 
+-(void) refeshData{
+   self.FavoriteCount.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
+   self.RetweetCount.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
+}
+
+- (IBAction)didTypeLike:(id)sender {
+    self.tweet.favorited = YES;
+    self.tweet.favoriteCount += 1;
+    [self refeshData];
+    
+}
+
 @end
