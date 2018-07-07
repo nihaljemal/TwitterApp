@@ -18,14 +18,27 @@
     self.UsernameLabel.text = tweet.user.name;
     self.ScreenName.text =tweet.user.screenName;
     self.CreatedAt.text =tweet.createdAtString;
-    self.RetweetCount.text = [NSString stringWithFormat:@"%d", tweet.retweetCount ];
+    self.RetweetCount.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     self.FavoriteCount.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     //NSLog(@"%d", tweet.favoriteCount);
-    
     NSString *fullPicURLString = tweet.user.url;
     NSURL *picURL = [NSURL URLWithString:fullPicURLString];
     self.ProfilePic.image = nil;
     [self.ProfilePic setImageWithURL:picURL];
+    
+    if(self.tweet.favorited){
+        self.LikeButton.selected = YES;
+    }
+    else{
+        self.LikeButton.selected = NO;
+    }
+    
+    if(self.tweet.retweeted){
+        self.RetweetButton.selected = YES;
+    }
+    else{
+        self.RetweetButton.selected = NO;
+    }
 }
 
 -(void) refeshData{
@@ -36,17 +49,19 @@
 - (IBAction)didTypeLike:(id)sender  {
     
     if(self.LikeButton.selected){
-        [self.LikeButton setSelected:NO];
+        self.LikeButton.selected = NO;
         self.tweet.favorited = NO;
         self.tweet.favoriteCount -= 1;
+         [self refeshData];
         
     }
     else{
-        [self.LikeButton setSelected:YES];
+        self.LikeButton.selected = YES;
         self.tweet.favorited = YES;
         self.tweet.favoriteCount += 1;
+         [self refeshData];
     }
-   [self refeshData];
+   //[self refeshData];
     
     [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
@@ -54,24 +69,28 @@
         }
         else{
             NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+             [self refeshData];
             
         }
     }];
     
 }
 - (IBAction)didTypeRetweet:(id)sender {
+    
     if(self.RetweetButton.selected){
-        [self.RetweetButton setSelected:NO];
+        self.RetweetButton.selected = NO;
         self.tweet.retweeted = NO;
         self.tweet.retweetCount -= 1;
+        [self refeshData];
         
     }
     else{
-        [self.RetweetButton setSelected:YES];
+        self.RetweetButton.selected = YES;
         self.tweet.retweeted= YES;
         self.tweet.retweetCount += 1;
+        [self refeshData];
     }
-    [self refeshData];
+   // [self refeshData];
     
     [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
         if(error){
